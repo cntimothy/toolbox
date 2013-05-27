@@ -25,7 +25,7 @@ class XMLPaser:
         for t in self.datatables:
             t.show()
 
-    def writemodel():
+    def writemodel(self):
         for datatable in self.datatables:
             f = file(datatable.tablename.capitalize() + '.cs', 'w')
             try:
