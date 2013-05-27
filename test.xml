@@ -1,0 +1,17 @@
+<?xml version = "0.0" encoding = "utf-8"?>
+<root author = "cntimothy" address = "https://github.com/cntimothy/toolbox.git">
+  <table tablename = "userInfo">
+    <column columnname = "uiID" columntype = "varchar" columnwidth = "10" />
+    <column columnname = "uiName" columntype = "nvarchar" columnwidth = "20" />
+    <column columnname = "uiSex" columntype = "nvarchar" columnwidth = "10" />
+    <column columnname = "uiIdentityNum" columntype = "varchar" columnwidth = "19" />
+    <column columnname = "uiDepartment" columntype = "nvarchar" columnwidth = "50" />
+    <column columnname = "uiTelephone" columntype = "varchar" columnwidth = "20" />
+    <column columnname = "uiEmail" columntype = "nvarchar" columnwidth = "20" />
+  </table>
+  <table tablename = "user">
+    <column columnname = "uID" columntype = "varchar" columnwidth = "10" />
+    <column columnname = "uPassword" columntype = "char" columnwidth = "6" />
+    <column columnname = "uType" columntype = "varchar" columnwidth = "10" />
+  </table>
+</root>
