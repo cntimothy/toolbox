@@ -1,4 +1,4 @@
-<?xml version = "0.0" encoding = "utf-8"?>
+﻿<?xml version = "0.0" encoding = "utf-8"?>
 <root author = "cntimothy" address = "https://github.com/cntimothy/toolbox.git">
   <table tablename = "userInfo">
     <column columnname = "uiID" columntype = "varchar" columnwidth = "10" />
