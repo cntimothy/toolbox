@@ -30,9 +30,9 @@ class XMLToCs:
 		for model in self.datatables:
 			if (not os.path.exists('Model')) or (os.path.isfile('Model')):
 				os.makedirs('Model')
-			f = file("Model\\" + model.tablename.capitalize() + '.cs', 'w')
+			f = file("Model\\" + model.tablenamecap + '.cs', 'w')
 			try:
-				self.writeusing(f)
+				self.writemodelusing(f)
 				f.write('namespace ' + namespace + '\n')
 				f.write('{\n')
 				f.write('\tpublic class ' + model.tablename.capitalize() +'\n')
@@ -52,14 +52,53 @@ class XMLToCs:
 					
 				f.write('\t}\n')
 				f.write('}')
+			except Exception:
+				print "Some error happened while write file..."
 			finally:
 				f.close()
 				print 'Table', model.tablename, 'is done!'
 		print 'Output all done!'
 		
-	def writeusing(self, f):
+	def writemodelusing(self, f):
 		f.write('using System;\n')
 		f.write('using System.Colllesections.Generic;\n')
 		f.write('using System.Linq;\n')
 		f.write('using System.Web;\n')
 		f.write('\n')
+		
+	def writebllusing(self, f):
+		f.write('using System;\n')
+		f.write('using System.Colllesections.Generic;\n')
+		f.write('using System.Linq;\n')
+		f.write('using System.Web;\n')
+		f.write("using System.Data;\n")
+		f.write("using System.Data.SqlClient;\n")
+		f.write("using DBUnity;\n")
+		f.write("using Model;\n")
+		f.write("using System.Text;\n")
+		f.write('\n')
+		
+	def writebll(self):
+		namespace = raw_input("Please input your namespace:")
+		for model in self.datatables:
+			if (not os.path.exists('BLL')) or (os.path.isfile('BLL')):
+				os.makedirs('BLL')
+			f = file("BLL\\" + model.tablename.capitalize() + 'BLL.cs', 'w')
+			try:
+				self.writebllusing(f)
+				f.write('namespace ' + namespace + '\n')
+				f.write('{\n')
+				f.write('\tpublic class ' + model.tablenamecap + 'BLL\n')
+				f.write('\t{\n')
+				f.write('\t\tpublic ' + model.tablenamecap + 'BLL()\n')
+				f.write('\t\t{}\n')
+				f.write('\t\tstatic readonly SQLDatabase db = new SQLDatabase()\n')
+				f.write('\t}\n')
+				f.write('}\n')
+			finally:
+				f.close()
+				
+	def writeinsertfunc(self, f):
+		f.write('\t\t\n')
+		f.write('\t\t\n')
+		f.write('\t\t\n')

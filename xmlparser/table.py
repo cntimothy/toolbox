@@ -6,6 +6,7 @@ class Table:
 	def __init__(self, tablename):
 		self.columns = []
 		self.tablename = tablename
+		self.tablenamecap = tablename[0].upper() + tablename[1:]
 		
 	def add(self, columnname, columntype, columnwidth):
 		column = {}
