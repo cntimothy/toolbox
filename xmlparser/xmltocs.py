@@ -32,11 +32,7 @@ class XMLToCs:
 				os.makedirs('Model')
 			f = file("Model\\" + model.tablename.capitalize() + '.cs', 'w')
 			try:
-				f.write('using System;\n')
-				f.write('using System.Colllesections.Generic;\n')
-				f.write('using System.Linq;\n')
-				f.write('using System.Web;\n')
-				f.write('\n')
+				self.writeusing(f)
 				f.write('namespace ' + namespace + '\n')
 				f.write('{\n')
 				f.write('\tpublic class ' + model.tablename.capitalize() +'\n')
@@ -60,3 +56,10 @@ class XMLToCs:
 				f.close()
 				print 'Table', model.tablename, 'is done!'
 		print 'Output all done!'
+		
+	def writeusing(self, f):
+		f.write('using System;\n')
+		f.write('using System.Colllesections.Generic;\n')
+		f.write('using System.Linq;\n')
+		f.write('using System.Web;\n')
+		f.write('\n')
