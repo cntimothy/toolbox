@@ -2,9 +2,12 @@
 #filename:table.py
 stringlist = ['char', 'varchar', 'nvarchar']
 intlist = ['int']
+sqldbtypedic = {'char':'Char', 'varchar':'VarChar', 'nvarchar':'NVarChar', 'int':'Int'}
+nettypedic = {'char':'string', 'varchar':'string', 'nvarchar':'string', 'int':'int'}
 class Table:
 	def __init__(self, tablename):
 		self.columns = []
+		self.columnnamelist = []
 		self.tablename = tablename
 		self.tablenamecap = tablename[0].upper() + tablename[1:]
 		
@@ -14,11 +17,14 @@ class Table:
 		column['columntype'] = columntype
 		column['columnwidth'] = columnwidth
 		column['columnnamecap'] = columnname[0].upper() + columnname[1:];
-		if columntype in stringlist:
-			column['columnfieldtype'] = 'string'
-		elif columntype in intlist:
-			column['columnfieldtype'] = 'int'
+		column['columnnettype'] = nettypedic[columntype]
+		column['columnsqldbtype'] = sqldbtypedic[columntype]
+		if columnwidth == 'max':
+			column['columnsqldbwidth'] = 'int.MaxValue'
+		else:
+			column['columnsqldbwidth'] = columnwidth
 		self.columns.append(column)
+		self.columnnamelist.append(columnname)
 		
 	def show(self):
 		print 'Table\'s name:', self.tablename
