@@ -11,12 +11,12 @@ class Doc:
 		
 	def writeall(self, file):
 		for line in self.lines:
-			if line.tostring() == '}':
+			if line.tostring().startswith('}'):
 				self.tabNo = self.tabNo - 1
 			tablist = ['\t']*self.tabNo
 			str = ''.join(tablist) + line.tostring()
 			file.write(str + '\n')
-			if line.tostring() == '{':
+			if line.tostring().startswith('{'):
 				self.tabNo = self.tabNo + 1
 				
 	def clear(self):
