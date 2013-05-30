@@ -6,4 +6,4 @@ while True:
 print 'The filepath you enter is', path
 paser = XMLToCs(path)
 paser.transfer()
-paser.writebll()
+paser.buildbll()
