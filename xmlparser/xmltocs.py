@@ -100,8 +100,13 @@ class XMLToCs:
 		if (not os.path.exists('BLL')) or (os.path.isfile('BLL')):
 			os.makedirs('BLL')
 		f = file("BLL\\" + model.tablenamecap + 'BLL.cs', 'w')
-		self.doc.writeall(f)
-		print 'BLL:', model.tablenamecap, 'BLL is Done!'
+		try:
+			self.doc.writeall(f)
+			print 'BLL:', model.tablenamecap, 'BLL is Done!'
+		except:
+			print 'BLL:', model.tablenamecap, 'BLL error while write!'
+		finally:
+			f.close()
 	
 	def buildinsert(self, model):
 		self.doc.append(Linefac.genlineobj('public static bool Insert(List<' + model.tablenamecap + '> models, ref string e)'))
@@ -135,7 +140,7 @@ class XMLToCs:
 		self.doc.append(Linefac.genlineobj('e += db.InsertExec(sql, parameters);'))
 		self.doc.append(Linefac.genlineobj('if(e != "")'))
 		self.doc.append(Linefac.genlineobj('{'))
-		self.doc.append(Linefac.genlineobj('e += \"Error in insert!\"'))
+		self.doc.append(Linefac.genlineobj('e += \"Error in insert!\";'))
 		self.doc.append(Linefac.genlineobj('return false'))
 		self.doc.append(Linefac.genlineobj('}'))
 		self.doc.append(Linefac.genlineobj('return true'))
@@ -162,7 +167,7 @@ class XMLToCs:
 		self.doc.append(Linefac.genlineobj('}'))
 		self.doc.append(Linefac.genlineobj('else'))
 		self.doc.append(Linefac.genlineobj('{'))
-		self.doc.append(Linefac.genlineobj('e += \"Error in select!\"'))
+		self.doc.append(Linefac.genlineobj('e += \"Error in select!\";'))
 		self.doc.append(Linefac.genlineobj('return false;'))
 		self.doc.append(Linefac.genlineobj('}'))
 		self.doc.append(Linefac.genlineobj('}'))
@@ -195,7 +200,7 @@ class XMLToCs:
 		self.doc.append(Linefac.genlineobj('e = db.QueryExec(strSql.ToString(), parameters);'))
 		self.doc.append(Linefac.genlineobj('if(e != "")'))
 		self.doc.append(Linefac.genlineobj('{'))		
-		self.doc.append(Linefac.genlineobj('e += \"Error in update!\"'))
+		self.doc.append(Linefac.genlineobj('e += \"Error in update!\";'))
 		self.doc.append(Linefac.genlineobj('return false;'))
 		self.doc.append(Linefac.genlineobj('}'))
 		self.doc.append(Linefac.genlineobj('return true;'))
@@ -212,7 +217,7 @@ class XMLToCs:
 		self.doc.append(Linefac.genlineobj('e = db.QueryExec(strSql.ToString(), parameters);'))
 		self.doc.append(Linefac.genlineobj('if(e != "")'))
 		self.doc.append(Linefac.genlineobj('{'))		
-		self.doc.append(Linefac.genlineobj('e += \"Error in delete!\"'))
+		self.doc.append(Linefac.genlineobj('e += \"Error in delete!\";'))
 		self.doc.append(Linefac.genlineobj('return false;'))
 		self.doc.append(Linefac.genlineobj('}'))
 		self.doc.append(Linefac.genlineobj('return true;'))
