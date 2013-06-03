@@ -14,7 +14,7 @@ class XmlReader:
 		root = doc.getroot()
 	
 		childrenofroot = root.getchildren()
-		for child in childofroot:
+		for child in childrenofroot:
 			csclass = CsClass(child.attrib['name'])
 			grandsons = child.getchildren()
 			for grandson in grandsons:

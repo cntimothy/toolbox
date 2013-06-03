@@ -21,5 +21,5 @@ class Field:
 		proplinelist.append(Linefac.genlineobj('{'))
 		proplinelist.append(Linefac.genlineobj('get { return ' + self.name + '; }'))
 		proplinelist.append(Linefac.genlineobj('set { ' + self.name + ' = value; }'))
-		proplinelist.append(Linefac.genlineobj('{'))
+		proplinelist.append(Linefac.genlineobj('}'))
 		return proplinelist

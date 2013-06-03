@@ -3,6 +3,7 @@
 
 from linefac import Linefac
 from field import Field
+import os
 
 class CsClass:
 	def __init__(self, name):
@@ -14,12 +15,17 @@ class CsClass:
 		
 	def genclass(self):
 		classlinelist = []
+		classlinelist.append(Linefac.genlineobj('#region Private Field'))
 		for field in self.fieldlist:
-			classlinelist = classlinelist + field.genfieldlinelist
+			classlinelist = classlinelist + field.genfieldlinelist()
+		classlinelist.append(Linefac.genlineobj('#endregion'))
 		classlinelist.append(Linefac.genlineobj(''))
 		
+		classlinelist.append(Linefac.genlineobj('#region Public Field'))
 		for field in self.fieldlist:
-			classlinelist = classlinelist + field.genproplinelist
+			classlinelist = classlinelist + field.genproplinelist()
 			classlinelist.append(Linefac.genlineobj(''))
+		classlinelist.append(Linefac.genlineobj('#endregion'))
 			
 		return classlinelist
+		
