@@ -9,6 +9,9 @@ class Doc:
 	def append(self, lineobj):
 		self.lines.append(lineobj)
 		
+	def merge(self, lineobjlist):
+		self.lines = self.lines + lineobjlist
+		
 	def writeall(self, file):
 		for line in self.lines:
 			if line.tostring().startswith('}'):

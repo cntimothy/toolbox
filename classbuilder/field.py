@@ -2,7 +2,7 @@
 #filename:field.py
 
 from linefac import Linefac
-from lneobj import Lineobj
+from lineobj import Lineobj
 
 class Field:
 	def __init__(self, name, type):
@@ -10,8 +10,16 @@ class Field:
 		self.type = type
 		self.property = name[0].upper() + name[1:]
 	
-	def tostring(self):
-		return 'private ' + type + ' ' + name + ';'
+	def genfieldlinelist(self):
+		fieldlinelist = []
+		fieldlinelist.append(Linefac.genlineobj('private ' + self.type + ' ' + self.name + ';'))
+		return fieldlinelist;
 		
-	def toproperty(self):
-		return 'public ' + type + ' ' + property + '\n'
+	def genproplinelist(self):
+		proplinelist = []
+		proplinelist.append(Linefac.genlineobj('public ' + self.type + ' ' + self.property))
+		proplinelist.append(Linefac.genlineobj('{'))
+		proplinelist.append(Linefac.genlineobj('get { return ' + self.name + '; }'))
+		proplinelist.append(Linefac.genlineobj('set { ' + self.name + ' = value; }'))
+		proplinelist.append(Linefac.genlineobj('{'))
+		return proplinelist
