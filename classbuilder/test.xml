@@ -1,0 +1,15 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<root author = "cntimothy" address = "https://github.com/cntimothy/toolbox.git">
+	<class name = "FourExp">
+		<field name = "operation" type = "string" />
+		<field name = "arg1" type = "string" />
+		<field name = "arg2" type = "string" />
+		<field name = "arg3" type = "string" />
+	</class>
+	<class name = "Instruction">
+		<field name = "operation" type = "string" />
+		<field name = "argument" type = "string" />
+		<field name = "argument" type = "string" />
+		<field name = "argument" type = "string" />
+	</class>
+</root>
