@@ -1,10 +1,12 @@
 import os
 import operator
 
+gcc = '/usr/local/mipsel-robin-elf/bin/gcc'
+
 for parent, dirnames, filenames in os.walk(os.getcwd()):
 	for filename in filenames:
 		if filename.endswith('.c'):
-			os.system('/usr/local/mipsel-robin-elf/bin/gcc -S ' + filename)	
+			os.system(gcc + ' -S ' + filename)	
 		
 ins_list = ['add', 'addu', 'sub', 'subu', 'and', 'or', 'xor', 'nor', 'slt', 'sltu', 'sll', 'srl', 'sra', 'sllv', 'srlv', 'srav', 'jr', 'addi', 'addiu', 'andi', 'ori', 'xori', 'lw', 'sw', 'beq', 'bne', 'slti', 'sltiu', 'lui', 'j', 'jal'] 
 
@@ -39,8 +41,9 @@ try:
 								
 							detail.write('[' + str(lineNo) + ']')
 							detail.write(operation + '\t')
-							lineNo += 1
-					
+						
+						lineNo += 1
+						
 					result.write("******************************" + filename + "******************************\n")
 					sorted_list = sorted(dicForSingleFile.iteritems(), key=operator.itemgetter(1), reverse=True)  
 					for item in sorted_list:
@@ -75,3 +78,8 @@ try:
 			count += 1
 finally:
 	result.close()
+	
+for parent, dirnames, filenames in os.walk(os.getcwd()):
+	for filename in filenames:
+		if filename.endswith('.c'):
+			os.system(gcc + ' -c -g -Wa,-adlhn ' + filename + ' > ' +filename[:-2] + '.merged')	
